@@ -8,26 +8,48 @@ angular.module('NarrowItDownApp', [])
 .directive('foundItems',FoundItemsDirective);
 
 
+function FoundItemsDirective() {
+
+  var ddo = {
+    templateUrl: 'foundItems.html',
+    scope: {
+      items: '<',
+      onRemove: '&'
+    },
+    controller: FoundItemsDirectiveController,
+    controllerAs: 'fountItemsCtl',
+    bindToController: true
+  };
+
+  return ddo;
+}
+
+function FoundItemsDirectiveController() {
+
+  var fountItemsCtl = this;
+
+  fountItemsCtl.isEmpty = function () {
+    return  fountItemsCtl.items &&  fountItemsCtl.items.length === 0;
+  };
+}
+
+
 NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var menu = this;
   menu.searchTerm = '';
-  menu.found = [];
 
   menu.getMachedMenuItems = function() {
-    menu.found = [];
+
     MenuSearchService.getMachedMenuItems(menu.searchTerm).then(function (result) {
       menu.found = result;
     });
   };
 
-  menu.onRemove = function(index) {
+  menu.removeItem = function(index) {
     menu.found.splice(index, 1);
   };
 
-  menu.isEmpty = function() {
-    return menu.found.length === 0;
-  };
 }
 
 
@@ -61,24 +83,6 @@ function MenuSearchService($http, ApiBasePath) {
     })
   };
 
-}
-
-function FoundItemsDirective() {
-
-  var ddo = {
-    templateUrl: 'shoppingList.html',
-    scope: {
-      items: '<',
-      myTitle: '@title',
-      badRemove: '=',
-      onRemove: '&'
-    },
-    controller: ShoppingListDirectiveController,
-    controllerAs: 'list',
-    bindToController: true
-  };
-
-  return ddo;
 }
 
 })();

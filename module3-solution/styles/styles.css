@@ -5,6 +5,19 @@ input[type="text"] {
   width: 200px;
   float: left;
 }
+
+tbody tr:nth-child(odd) {
+   background-color: #f2f2f2;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+.warning {
+  color: #9F6000;
+}
+
 .narrow-button {
   float: left;
   margin-left: 10px;
