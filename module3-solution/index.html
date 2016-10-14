@@ -24,9 +24,12 @@
       <ul>
         <li ng-repeat="item in narrowItDown.found">
           {{item.name}} - {{item.short_name}} - {{item.description}}
+          <button ng-click="narrowItDown.removeItem($index);">Don't want this one!</button>
         </li>
       </ul>
     </div>
+
+    <div class="error" ng-if="narrowItDown.isEmpty();">Nothing found</div>
 
 
     <!-- Bonus loader (see Bonus section of the assignment) -->
