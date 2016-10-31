@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>My Preferences</h2>
+
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <p ng-if="!userPrefCtrl.logged" class="text-center">Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a></p>
+      <div ng-if="userPrefCtrl.logged">
+        <ul>
+          <li>First name: {{userPrefCtrl.userPref.firstName}}</li>
+          <li>Last name: {{userPrefCtrl.userPref.lastName}}</li>
+          <li>Email address: {{userPrefCtrl.userPref.email}}</li>
+          <li>Phone number: {{userPrefCtrl.userPref.phone}}</li>
+          <li>Favorite dish:
+            <ul>
+              <li>Name: {{userPrefCtrl.userPref.favoriteDish.name}}</li>
+              <li>Description: {{userPrefCtrl.userPref.favoriteDish.description}}</li>
+              <li>
+                <img ng-src="https://joseplinares-restaurant.herokuapp.com/images/{{userPrefCtrl.userPref.favoriteDish.number}}.jpg" alt="{{userPrefCtrl.userPref.favoriteDish.name}}" />
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
